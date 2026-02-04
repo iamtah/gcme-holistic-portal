@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holistic Industrial Solution Center - Complete Sitemap</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Kanit:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #004d99;
+            --secondary: #00cc66;
+            --accent: #ff6b35;
+            --warning: #ffd23f;
+            --danger: #ee4266;
+            --info: #3bceac;
+            --bg: #f5f7fa;
+            --surface: #ffffff;
+            --text: #1a202c;
+            --text-secondary: #4a5568;
+            --border: #e2e8f0;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'IBM Plex Sans Thai', 'Kanit', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 4px solid var(--primary);
+            position: relative;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-direction: column;
+        }
+        
+        .logo {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .project-name {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text);
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+        
+        .header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .workflow-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 32px;
+            border-radius: 20px;
+            margin-bottom: 48px;
+            color: white;
+        }
+        
+        .workflow-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .workflow-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .workflow-step {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            transition: all 0.3s;
+        }
+        
+        .workflow-step:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-4px);
+        }
+        
+        .step-number {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .step-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .step-subtitle {
+            font-size: 13px;
+            opacity: 0.85;
+        }
+        
+        .workflow-arrow {
+            font-size: 32px;
+            opacity: 0.8;
+        }
+        
+        .note-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .note-box strong {
+            color: #856404;
+            font-size: 18px;
+        }
+        
+        .note-box p {
+            color: #856404;
+            margin-top: 8px;
+        }
+        
+        .section-divider {
+            text-align: center;
+            margin: 50px 0 40px 0;
+            position: relative;
+        }
+        
+        .section-divider h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text);
+            display: inline-block;
+            background: white;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+        
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 28px;
+            margin-top: 40px;
+        }
+        
+        .module {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .module::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .module:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px var(--shadow);
+            border-color: var(--primary);
+        }
+        
+        .module:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .module-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: 600;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .module-title {
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.3;
+        }
+        
+        .module-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-item {
+            padding: 11px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--text);
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+        }
+        
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-item:hover {
+            padding-left: 10px;
+            color: var(--primary);
+            background: rgba(0, 102, 204, 0.03);
+        }
+        
+        .feature-item::before {
+            content: '▸';
+            color: var(--primary);
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 16px;
+        }
+        
+        .thai-label {
+            color: var(--text);
+            font-weight: 500;
+        }
+        
+        .eng-label {
+            color: var(--text-secondary);
+            font-weight: 400;
+            font-size: 13px;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 14px;
+            margin-right: 6px;
+        }
+        
+        .tag.public {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .tag.new {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .tag.important {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .tag.core {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+        
+        /* Color coding */
+        .module.customer .module-icon { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .module.sme .module-icon { background: linear-gradient(135deg, #10b981, #059669); }
+        .module.sale .module-icon { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .module.manager .module-icon { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .module.admin .module-icon { background: linear-gradient(135deg, #ec4899, #db2777); }
+        .module.system .module-icon { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+        .module.reporting .module-icon { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        
+        .legend {
+            margin-top: 48px;
+            padding: 28px;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 16px;
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: 2px solid var(--border);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-color {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+        
+        .legend-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .sitemap-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">GCME</div>
+                <div class="project-name">Holistic Industrial Solution Center</div>
+            </div>
+            <h1>Complete System Sitemap</h1>
+            <p>ระบบจัดการคำขอและคำถามอุตสาหกรรมแบบครบวงจร</p>
+        </div>
+        
+        <!-- Workflow Section -->
+        <div class="workflow-section">
+            <div class="workflow-title">⚙️ ขั้นตอนการทำงานของระบบ<br><small style="font-size: 0.7em; opacity: 0.9;">System Workflow (Process Flow)</small></div>
+            <div class="workflow-steps">
+                <div class="workflow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">ส่งคำขอ</div>
+                    <div class="step-subtitle">Request Submission<br>(No Login Required)</div>
+                </div>
+                <div class="workflow-arrow">→</div>
+                <div class="workflow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">ส่งต่ออัตโนมัติ</div>
+                    <div class="step-subtitle">Auto Route to SME<br>(by Category)</div>
+                </div>
+                <div class="workflow-arrow">→</div>
+                <div class="workflow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">SME ตอบคำถาม</div>
+                    <div class="step-subtitle">SME Review & Answer</div>
+                </div>
+                <div class="workflow-arrow">→</div>
+                <div class="workflow-step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Sale ติดต่อลูกค้า</div>
+                    <div class="step-subtitle">Coordinator Contact<br>& Close Ticket</div>
+                </div>
+                <div class="workflow-arrow">→</div>
+                <div class="workflow-step">
+                    <div class="step-number">5</div>
+                    <div class="step-title">ประเมินผล</div>
+                    <div class="step-subtitle">Evaluation via Email Link</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="note-box">
+            <strong>📧 การแจ้งเตือนผ่านอีเมล (Email Notifications Only)</strong>
+            <p>ระบบจะแจ้งเตือนทุกขั้นตอนผ่านอีเมลเท่านั้น ไม่มี LINE / SMS / MS Teams</p>
+        </div>
+
+        <!-- SECTION: PUBLIC PAGES -->
+        <div class="section-divider">
+            <h2>🌐 ส่วนหน้าบ้าน (Public Pages - No Login)</h2>
+        </div>
+        
+        <div class="sitemap-grid">
+            <!-- Landing Page -->
+            <div class="module customer">
+                <div class="module-header">
+                    <div class="module-icon">🏠</div>
+                    <div>
+                        <div class="module-title">หน้าแรก + ฟอร์มส่งคำขอ<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">Landing Page + Contact Form</small></div>
+                        <div class="module-subtitle">เปิดให้ทุกคนเข้าถึงได้</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">แนะนำบริการ</span> <span class="eng-label">(Service Introduction)</span></li>
+                    <li class="feature-item"><span class="thai-label">ฟอร์มส่งคำขอ/คำถาม</span> <span class="eng-label">(Request Form)</span></li>
+                    <li class="feature-item"><span class="thai-label">ฟิลด์: ชื่อ-นามสกุล, เบอร์โทร, อีเมล</span></li>
+                    <li class="feature-item"><span class="thai-label">ฟิลด์: บริษัท, หัวข้อเรื่อง, รายละเอียด</span></li>
+                    <li class="feature-item"><span class="thai-label">เลือกหมวดหมู่</span> <span class="eng-label">(Category Selection)</span></li>
+                    <li class="feature-item"><span class="thai-label">ระดับความเร่งด่วน</span> <span class="eng-label">(Priority/Severity)</span></li>
+                    <li class="feature-item"><span class="thai-label">แนบไฟล์</span> <span class="eng-label">(File Attachment)</span></li>
+                    <li class="feature-item"><span class="thai-label">ปุ่ม Submit</span></li>
+                </ul>
+                <span class="tag public">Public Access</span>
+                <span class="tag core">Core Page</span>
+            </div>
+
+            <!-- Success Page -->
+            <div class="module customer">
+                <div class="module-header">
+                    <div class="module-icon">✅</div>
+                    <div>
+                        <div class="module-title">หน้าส่งคำขอสำเร็จ<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">Success Page</small></div>
+                        <div class="module-subtitle">แสดงหลังส่งฟอร์ม</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">แสดง Ticket ID</span> <span class="eng-label">(#REQ-YYYY-XXXX)</span></li>
+                    <li class="feature-item"><span class="thai-label">ข้อความยืนยัน</span> <span class="eng-label">(Confirmation Message)</span></li>
+                    <li class="feature-item"><span class="thai-label">แจ้งว่าส่งอีเมลไปแล้ว</span> <span class="eng-label">(Email Sent Notice)</span></li>
+                    <li class="feature-item"><span class="thai-label">คำแนะนำเก็บ Ticket ID</span></li>
+                    <li class="feature-item"><span class="thai-label">ลิงก์ไปหน้าติดตามสถานะ</span> <span class="eng-label">(Track Status Link)</span></li>
+                </ul>
+                <span class="tag new">New Page</span>
+            </div>
+
+            <!-- Track Status Page -->
+            <div class="module customer">
+                <div class="module-header">
+                    <div class="module-icon">🔍</div>
+                    <div>
+                        <div class="module-title">หน้าติดตามสถานะ<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">Track Status Page</small></div>
+                        <div class="module-subtitle">ตรวจสอบความคืบหน้า</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">ใส่ Ticket ID + Email</span> <span class="eng-label">(Verification)</span></li>
+                    <li class="feature-item"><span class="thai-label">แสดงข้อมูลคำขอ</span> <span class="eng-label">(Request Details)</span></li>
+                    <li class="feature-item"><span class="thai-label">Timeline ความคืบหน้า</span> <span class="eng-label">(Progress Timeline)</span></li>
+                    <li class="feature-item"><span class="thai-label">สถานะปัจจุบัน</span> <span class="eng-label">(Current Status)</span></li>
+                    <li class="feature-item"><span class="thai-label">แสดงคำตอบจาก SME</span> <span class="eng-label">(SME Response)</span></li>
+                    <li class="feature-item"><span class="thai-label">ไฟล์แนบจาก SME</span> <span class="eng-label">(Attachments)</span></li>
+                    <li class="feature-item"><span class="thai-label">ลิงก์ประเมินผล</span> <span class="eng-label">(Evaluation Link)</span></li>
+                </ul>
+                <span class="tag new">New Page</span>
+                <span class="tag important">Important</span>
+            </div>
+
+            <!-- Evaluation Page -->
+            <div class="module customer">
+                <div class="module-header">
+                    <div class="module-icon">⭐</div>
+                    <div>
+                        <div class="module-title">หน้าประเมินผล<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">Evaluation Page</small></div>
+                        <div class="module-subtitle">หลังปิดเคส</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">คะแนนความชัดเจนของคำตอบ</span> <span class="eng-label">(1-5)</span></li>
+                    <li class="feature-item"><span class="thai-label">คะแนนความรวดเร็ว</span> <span class="eng-label">(1-5)</span></li>
+                    <li class="feature-item"><span class="thai-label">คะแนนความพึงพอใจรวม</span> <span class="eng-label">(1-5)</span></li>
+                    <li class="feature-item"><span class="thai-label">ช่องความคิดเห็น</span> <span class="eng-label">(Comment Box)</span></li>
+                    <li class="feature-item"><span class="thai-label">ปุ่ม Submit</span></li>
+                    <li class="feature-item"><span class="thai-label">ขอบคุณหลังส่ง</span> <span class="eng-label">(Thank You Message)</span></li>
+                </ul>
+                <span class="tag new">New Page</span>
+            </div>
+        </div>
+
+        <!-- SECTION: INTERNAL SYSTEM -->
+        <div class="section-divider">
+            <h2>🏢 ส่วนหลังบ้าน (Internal System - Staff Only)</h2>
+        </div>
+        
+        <div class="sitemap-grid">
+            <!-- Internal Login -->
+            <div class="module admin">
+                <div class="module-header">
+                    <div class="module-icon">🔐</div>
+                    <div>
+                        <div class="module-title">เข้าสู่ระบบพนักงาน<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">Staff Login</small></div>
+                        <div class="module-subtitle">สำหรับพนักงานเท่านั้น</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">Email + Password</span></li>
+                    <li class="feature-item"><span class="thai-label">Remember Me</span></li>
+                    <li class="feature-item"><span class="thai-label">Forget Password</span></li>
+                    <li class="feature-item"><span class="thai-label">Role-based Access</span> <span class="eng-label">(SME/Sale/Manager/Admin)</span></li>
+                </ul>
+                <span class="tag important">Staff Only</span>
+            </div>
+
+            <!-- Dashboard -->
+            <div class="module admin">
+                <div class="module-header">
+                    <div class="module-icon">📊</div>
+                    <div>
+                        <div class="module-title">Dashboard หลัก<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">Main Dashboard</small></div>
+                        <div class="module-subtitle">ภาพรวมระบบ</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">สถิติคำขอทั้งหมด</span> <span class="eng-label">(Total Requests)</span></li>
+                    <li class="feature-item"><span class="thai-label">คำขอรอดำเนินการ</span> <span class="eng-label">(Pending)</span></li>
+                    <li class="feature-item"><span class="thai-label">คำขอเกิน SLA</span> <span class="eng-label">(Overdue)</span></li>
+                    <li class="feature-item"><span class="thai-label">กราฟแสดงผล</span> <span class="eng-label">(Charts & Graphs)</span></li>
+                    <li class="feature-item"><span class="thai-label">Quick Actions</span></li>
+                </ul>
+                <span class="tag core">Core Module</span>
+            </div>
+
+            <!-- All Requests -->
+            <div class="module admin">
+                <div class="module-header">
+                    <div class="module-icon">📋</div>
+                    <div>
+                        <div class="module-title">จัดการคำขอทั้งหมด<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">All Requests Management</small></div>
+                        <div class="module-subtitle">รายการคำขอในระบบ</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">รายการคำขอทั้งหมด</span> <span class="eng-label">(All Tickets)</span></li>
+                    <li class="feature-item"><span class="thai-label">Ticket ID, หัวข้อ, ลูกค้า, SME</span></li>
+                    <li class="feature-item"><span class="thai-label">สถานะและ Priority</span></li>
+                    <li class="feature-item"><span class="thai-label">SLA Timer</span></li>
+                    <li class="feature-item"><span class="thai-label">ค้นหาและกรอง</span> <span class="eng-label">(Search & Filter)</span></li>
+                    <li class="feature-item"><span class="thai-label">มอบหมายงาน</span> <span class="eng-label">(Assignment)</span></li>
+                    <li class="feature-item"><span class="thai-label">ส่งออก Excel</span> <span class="eng-label">(Export)</span></li>
+                </ul>
+                <span class="tag core">Core Module</span>
+            </div>
+
+            <!-- Request Detail -->
+            <div class="module admin">
+                <div class="module-header">
+                    <div class="module-icon">📄</div>
+                    <div>
+                        <div class="module-title">รายละเอียดคำขอ<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">Request Detail</small></div>
+                        <div class="module-subtitle">ข้อมูลเต็มรูปแบบ</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">ข้อมูลคำขอครบถ้วน</span></li>
+                    <li class="feature-item"><span class="thai-label">ข้อมูลลูกค้า</span> <span class="eng-label">(Customer Info)</span></li>
+                    <li class="feature-item"><span class="thai-label">Timeline กระบวนการ</span></li>
+                    <li class="feature-item"><span class="thai-label">Assigned SME & First Response</span></li>
+                    <li class="feature-item"><span class="thai-label">Status History</span></li>
+                    <li class="feature-item"><span class="thai-label">Action By (ผู้ดำเนินการ)</span></li>
+                    <li class="feature-item"><span class="thai-label">Escalation Info</span></li>
+                </ul>
+                <span class="tag new">New Module</span>
+            </div>
+
+            <!-- SME Dashboard -->
+            <div class="module sme">
+                <div class="module-header">
+                    <div class="module-icon">🎓</div>
+                    <div>
+                        <div class="module-title">SME Dashboard</div>
+                        <div class="module-subtitle">ผู้เชี่ยวชาญ - Subject Matter Expert</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">งานที่ได้รับมอบหมาย</span> <span class="eng-label">(My Assigned Queue)</span></li>
+                    <li class="feature-item"><span class="thai-label">ดูรายละเอียดคำถาม</span></li>
+                    <li class="feature-item"><span class="thai-label">ตอบคำถาม/ให้คำแนะนำ</span></li>
+                    <li class="feature-item"><span class="thai-label">แนบไฟล์คำตอบ</span></li>
+                    <li class="feature-item"><span class="thai-label">ระบุสถานะ Available/Busy</span></li>
+                    <li class="feature-item"><span class="thai-label">First Response Time Tracking</span></li>
+                    <li class="feature-item"><span class="thai-label">ประวัติการตอบ</span></li>
+                </ul>
+                <span class="tag core">Core Module</span>
+            </div>
+
+            <!-- SME Profile Management -->
+            <div class="module sme">
+                <div class="module-header">
+                    <div class="module-icon">👤</div>
+                    <div>
+                        <div class="module-title">จัดการ SME Profile<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">SME Profile Management</small></div>
+                        <div class="module-subtitle">ข้อมูลผู้เชี่ยวชาญ</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">SME ID, ชื่อ, ตำแหน่ง</span></li>
+                    <li class="feature-item"><span class="thai-label">หน่วยงาน</span> <span class="eng-label">(Department)</span></li>
+                    <li class="feature-item"><span class="thai-label">รูปภาพ</span> <span class="eng-label">(Picture Upload)</span></li>
+                    <li class="feature-item"><span class="thai-label">ความเชี่ยวชาญ</span> <span class="eng-label">(Expertise/Category)</span></li>
+                    <li class="feature-item"><span class="thai-label">อีเมล</span> <span class="eng-label">(Email)</span></li>
+                    <li class="feature-item"><span class="thai-label">ค้นหา SME</span></li>
+                    <li class="feature-item"><span class="thai-label">ส่งออก Excel</span></li>
+                </ul>
+                <span class="tag important">Master Data</span>
+            </div>
+
+            <!-- Sale/Coordinator Dashboard -->
+            <div class="module sale">
+                <div class="module-header">
+                    <div class="module-icon">💼</div>
+                    <div>
+                        <div class="module-title">Sale/Coordinator Dashboard</div>
+                        <div class="module-subtitle">ผู้ประสานงาน</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">คิวงานที่ต้องติดต่อลูกค้า</span></li>
+                    <li class="feature-item"><span class="thai-label">ดูคำตอบจาก SME</span></li>
+                    <li class="feature-item"><span class="thai-label">บันทึกการติดต่อ</span> <span class="eng-label">(Contact Log)</span></li>
+                    <li class="feature-item"><span class="thai-label">ประสานงานและชี้แจง</span></li>
+                    <li class="feature-item"><span class="thai-label">ปิดงาน (Close Ticket)</span></li>
+                    <li class="feature-item"><span class="thai-label">แจ้งระบบเมื่อเสร็จสิ้น</span></li>
+                </ul>
+                <span class="tag important">Critical Role</span>
+            </div>
+
+            <!-- Sale Profile Management -->
+            <div class="module sale">
+                <div class="module-header">
+                    <div class="module-icon">👤</div>
+                    <div>
+                        <div class="module-title">จัดการ Sale Profile<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">Sale Profile Management</small></div>
+                        <div class="module-subtitle">ข้อมูลฝ่ายขาย</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">Sale ID, ชื่อ, ตำแหน่ง</span></li>
+                    <li class="feature-item"><span class="thai-label">หน่วยงาน</span> <span class="eng-label">(Department)</span></li>
+                    <li class="feature-item"><span class="thai-label">รูปภาพ</span> <span class="eng-label">(Picture Upload)</span></li>
+                    <li class="feature-item"><span class="thai-label">อีเมล</span> <span class="eng-label">(Email)</span></li>
+                    <li class="feature-item"><span class="thai-label">ค้นหา Sale</span></li>
+                    <li class="feature-item"><span class="thai-label">ส่งออก Excel</span></li>
+                </ul>
+                <span class="tag important">Master Data</span>
+            </div>
+
+            <!-- Manager Dashboard -->
+            <div class="module manager">
+                <div class="module-header">
+                    <div class="module-icon">👨‍💼</div>
+                    <div>
+                        <div class="module-title">Manager Dashboard</div>
+                        <div class="module-subtitle">ผู้จัดการ - Escalation</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">Escalated Cases</span></li>
+                    <li class="feature-item"><span class="thai-label">ดูเหตุผล Escalation</span></li>
+                    <li class="feature-item"><span class="thai-label">มอบหมายงานใหม่</span> <span class="eng-label">(Reassign)</span></li>
+                    <li class="feature-item"><span class="thai-label">ติดตามทีม</span> <span class="eng-label">(Team Monitor)</span></li>
+                    <li class="feature-item"><span class="thai-label">อนุมัติ/ทบทวน</span></li>
+                    <li class="feature-item"><span class="thai-label">Performance Overview</span></li>
+                </ul>
+                <span class="tag new">New Module</span>
+            </div>
+
+            <!-- Manager Profile Management -->
+            <div class="module manager">
+                <div class="module-header">
+                    <div class="module-icon">👤</div>
+                    <div>
+                        <div class="module-title">จัดการ Manager Profile<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">Manager Profile Management</small></div>
+                        <div class="module-subtitle">ข้อมูลผู้จัดการ</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">Manager ID, ชื่อ, ตำแหน่ง</span></li>
+                    <li class="feature-item"><span class="thai-label">หน่วยงาน</span> <span class="eng-label">(Department)</span></li>
+                    <li class="feature-item"><span class="thai-label">รูปภาพ</span> <span class="eng-label">(Picture Upload)</span></li>
+                    <li class="feature-item"><span class="thai-label">อีเมล</span></li>
+                </ul>
+                <span class="tag important">Master Data</span>
+            </div>
+
+            <!-- Auto Routing System -->
+            <div class="module system">
+                <div class="module-header">
+                    <div class="module-icon">🔀</div>
+                    <div>
+                        <div class="module-title">ระบบส่งต่ออัตโนมัติ<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">Auto Routing to SME</small></div>
+                        <div class="module-subtitle">จัดส่งงานตามหมวดหมู่</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">ส่งต่อตามหมวดหมู่</span></li>
+                    <li class="feature-item"><span class="thai-label">จับคู่ SME Expertise</span></li>
+                    <li class="feature-item"><span class="thai-label">ตรวจสอบ Available/Busy</span></li>
+                    <li class="feature-item"><span class="thai-label">Load Balancing</span></li>
+                    <li class="feature-item"><span class="thai-label">กฎการมอบหมาย</span></li>
+                    <li class="feature-item"><span class="thai-label">Assignment Log</span></li>
+                </ul>
+                <span class="tag core">Auto System</span>
+            </div>
+
+            <!-- Notification System -->
+            <div class="module system">
+                <div class="module-header">
+                    <div class="module-icon">📧</div>
+                    <div>
+                        <div class="module-title">ระบบแจ้งเตือน<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">Email Notification System</small></div>
+                        <div class="module-subtitle">Email Only</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">Email Notification Log</span></li>
+                    <li class="feature-item"><span class="thai-label">ช่องทาง: Email เท่านั้น</span></li>
+                    <li class="feature-item"><span class="thai-label">ประเภท: New Ticket, Reminder, Escalation, Closing</span></li>
+                    <li class="feature-item"><span class="thai-label">สถานะ: Success / Failed</span></li>
+                    <li class="feature-item"><span class="thai-label">ตั้งค่าการแจ้งเตือน</span></li>
+                    <li class="feature-item"><span class="thai-label">Email Templates</span></li>
+                </ul>
+                <span class="tag core">Email Only</span>
+            </div>
+
+            <!-- SLA & Escalation -->
+            <div class="module system">
+                <div class="module-header">
+                    <div class="module-icon">⏱️</div>
+                    <div>
+                        <div class="module-title">SLA & Escalation</div>
+                        <div class="module-subtitle">การจัดการเวลา</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">SLA Response/Resolution Time</span></li>
+                    <li class="feature-item"><span class="thai-label">เวลาตอบกลับจริง</span></li>
+                    <li class="feature-item"><span class="thai-label">สถานะ: On-time / Overdue</span></li>
+                    <li class="feature-item"><span class="thai-label">เงื่อนไข: 3 วันทำการ</span></li>
+                    <li class="feature-item"><span class="thai-label">Auto Escalate to Manager</span></li>
+                </ul>
+                <span class="tag important">Critical</span>
+            </div>
+
+            <!-- Reporting & Analytics -->
+            <div class="module reporting">
+                <div class="module-header">
+                    <div class="module-icon">📊</div>
+                    <div>
+                        <div class="module-title">รายงานและสถิติ<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">Reports & Analytics</small></div>
+                        <div class="module-subtitle">Weekly Auto Report</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">จำนวนเคสทั้งหมด/ค้าง/ปิด</span></li>
+                    <li class="feature-item"><span class="thai-label">เคสเกิน SLA</span></li>
+                    <li class="feature-item"><span class="thai-label">ค่าเฉลี่ยเวลาปิดเคส</span></li>
+                    <li class="feature-item"><span class="thai-label">คะแนนความพึงพอใจเฉลี่ย</span></li>
+                    <li class="feature-item"><span class="thai-label">Top Category</span></li>
+                    <li class="feature-item"><span class="thai-label">SME Performance Ranking</span></li>
+                    <li class="feature-item"><span class="thai-label">Weekly Auto Report</span></li>
+                </ul>
+                <span class="tag core">Analytics</span>
+            </div>
+
+            <!-- Security & Audit -->
+            <div class="module system">
+                <div class="module-header">
+                    <div class="module-icon">🔒</div>
+                    <div>
+                        <div class="module-title">ความปลอดภัยและ Audit<br><small style="font-size: 0.65em; font-weight: 500; color: #64748b;">Security & Audit Log</small></div>
+                        <div class="module-subtitle">สำหรับองค์กร</div>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item"><span class="thai-label">ผู้สร้างเคส</span></li>
+                    <li class="feature-item"><span class="thai-label">IP / Device</span></li>
+                    <li class="feature-item"><span class="thai-label">Login Log</span></li>
+                    <li class="feature-item"><span class="thai-label">Data Modification Log</span></li>
+                    <li class="feature-item"><span class="thai-label">User Roles: SME/Sale/Manager/Admin</span></li>
+                    <li class="feature-item"><span class="thai-label">Role Management</span></li>
+                </ul>
+                <span class="tag new">Security</span>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #3b82f6, #2563eb);"></div>
+                <span class="legend-label">Public Pages (ไม่ต้อง Login)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #10b981, #059669);"></div>
+                <span class="legend-label">SME Module (ผู้เชี่ยวชาญ)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #f59e0b, #d97706);"></div>
+                <span class="legend-label">Sale Module (ฝ่ายขาย)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);"></div>
+                <span class="legend-label">Manager Module (ผู้จัดการ)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #ec4899, #db2777);"></div>
+                <span class="legend-label">Admin Module (ผู้ดูแลระบบ)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #06b6d4, #0891b2);"></div>
+                <span class="legend-label">System Module (ระบบอัตโนมัติ)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #ef4444, #dc2626);"></div>
+                <span class="legend-label">Reporting (รายงาน)</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 48px; padding-top: 32px; border-top: 2px solid #e2e8f0; color: #64748b;">
+            <p style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Holistic Industrial Solution Center</p>
+            <p>© 2026 GCME - Complete System Architecture</p>
+        </div>
+    </div>
+</body>
+</html>

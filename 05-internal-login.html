@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ - GCME Internal Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066CC;
+            --accent: #00A3E0;
+            --success: #00B884;
+            --bg-light: #F8FAFC;
+            --text-primary: #1A202C;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+        }
+
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background: linear-gradient(135deg, #0066CC 0%, #004C99 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .login-container {
+            max-width: 450px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: auto;
+        }
+
+        .remember-me label {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .forgot-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.3);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 1rem;
+            color: var(--text-secondary);
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .help-text {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .help-text a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .help-text a:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .alert-info {
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            color: #1E40AF;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-section">
+            <div class="logo-icon">G</div>
+            <h1>เข้าสู่ระบบ</h1>
+            <p class="subtitle">GCME Internal Portal</p>
+        </div>
+
+        <div class="alert alert-info">
+            ℹ️ <strong>Demo:</strong> Username: <code>sme01</code> / Password: <code>demo123</code>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label>ชื่อผู้ใช้</label>
+                <input type="text" name="username" id="username" placeholder="กรอกชื่อผู้ใช้" required>
+            </div>
+
+            <div class="form-group">
+                <label>รหัสผ่าน</label>
+                <input type="password" name="password" id="password" placeholder="กรอกรหัสผ่าน" required>
+            </div>
+
+            <div class="remember-forgot">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">จดจำฉันไว้</label>
+                </div>
+                <a href="#" class="forgot-link">ลืมรหัสผ่าน?</a>
+            </div>
+
+            <button type="submit" class="login-btn">เข้าสู่ระบบ</button>
+        </form>
+
+        <div class="divider">
+            <span>หรือ</span>
+        </div>
+
+        <div class="help-text">
+            ต้องการความช่วยเหลือ? <a href="#">ติดต่อ IT Support</a>
+        </div>
+    </div>
+
+    <script>
+        // Demo users
+        const demoUsers = {
+            'sme01': { password: 'demo123', role: 'sme', name: 'วิศวกร สมบูรณ์', department: 'Electrical' },
+            'admin': { password: 'admin123', role: 'admin', name: 'ผู้ดูแลระบบ', department: 'IT' },
+            'coordinator': { password: 'coord123', role: 'coordinator', name: 'ผู้ประสานงาน', department: 'Operations' }
+        };
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            const user = demoUsers[username];
+            
+            if (user && user.password === password) {
+                // Store user session
+                const session = {
+                    username: username,
+                    name: user.name,
+                    role: user.role,
+                    department: user.department,
+                    loginTime: new Date().toISOString()
+                };
+                
+                localStorage.setItem('internalUser', JSON.stringify(session));
+                
+                // Redirect based on role
+                if (user.role === 'admin' || user.role === 'coordinator') {
+                    window.location.href = '05-internal-dashboard.html';
+                } else {
+                    window.location.href = '06-internal-my-tasks.html';
+                }
+            } else {
+                alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
+            }
+        });
+    </script>
+</body>
+</html>

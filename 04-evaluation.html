@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประเมินความพึงพอใจ - Holistic Industrial Solution Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066CC;
+            --accent: #00A3E0;
+            --success: #00B884;
+            --bg-light: #F8FAFC;
+            --text-primary: #1A202C;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background: var(--bg-light);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        .eval-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ticket-info {
+            background: #EFF6FF;
+            border: 2px solid #BFDBFE;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .ticket-info h3 {
+            color: var(--primary);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .ticket-info .ticket-id {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: 'Courier New', monospace;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: #FFF7ED;
+            border-radius: 12px;
+            border: 2px solid #FED7AA;
+        }
+
+        .intro-text p {
+            color: #7C2D12;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .rating-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .rating-label {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .rating-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stars {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .star {
+            font-size: 3.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #E5E7EB;
+        }
+
+        .star:hover {
+            transform: scale(1.2);
+            color: #FCD34D;
+        }
+
+        .star.active {
+            color: #F59E0B;
+            transform: scale(1.15);
+        }
+
+        .comment-section {
+            margin-bottom: 2rem;
+        }
+
+        .comment-label {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 1.125rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 150px;
+            transition: all 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .thank-you {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .thank-you-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--success), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3.5rem;
+        }
+
+        .thank-you h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .thank-you p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .rating-value {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .eval-card {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .star {
+                font-size: 2.5rem;
+            }
+
+            .stars {
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">G</div>
+                <div class="logo-text">GCME</div>
+            </div>
+            <h1>ประเมินความพึงพอใจ</h1>
+            <p class="subtitle">ความคิดเห็นของคุณมีคุณค่าต่อเรา</p>
+        </div>
+
+        <div class="eval-card">
+            <div id="evaluationForm">
+                <div class="ticket-info">
+                    <h3>Ticket ID</h3>
+                    <div class="ticket-id" id="ticketId">REQ-2024-00001</div>
+                </div>
+
+                <div class="intro-text">
+                    <p>🙏 ขอบคุณที่ใช้บริการของเรา<br>
+                    กรุณาประเมินคุณภาพการให้บริการ เพื่อให้เราพัฒนาได้ดียิ่งขึ้น</p>
+                </div>
+
+                <form id="feedbackForm">
+                    <div class="rating-section">
+                        <div class="rating-label">
+                            <span>💡</span>
+                            <span>ความชัดเจนของคำตอบ</span>
+                        </div>
+                        <p class="rating-description">คำตอบที่ได้รับมีความชัดเจนและเข้าใจง่ายเพียงใด</p>
+                        <div class="stars" data-rating="clarity">
+                            <span class="star" data-value="1">⭐</span>
+                            <span class="star" data-value="2">⭐</span>
+                            <span class="star" data-value="3">⭐</span>
+                            <span class="star" data-value="4">⭐</span>
+                            <span class="star" data-value="5">⭐</span>
+                        </div>
+                        <div class="rating-value" id="clarityValue"></div>
+                    </div>
+
+                    <div class="rating-section">
+                        <div class="rating-label">
+                            <span>⚡</span>
+                            <span>ความรวดเร็วในการให้บริการ</span>
+                        </div>
+                        <p class="rating-description">ระยะเวลาในการตอบกลับตรงตามความคาดหวังหรือไม่</p>
+                        <div class="stars" data-rating="speed">
+                            <span class="star" data-value="1">⭐</span>
+                            <span class="star" data-value="2">⭐</span>
+                            <span class="star" data-value="3">⭐</span>
+                            <span class="star" data-value="4">⭐</span>
+                            <span class="star" data-value="5">⭐</span>
+                        </div>
+                        <div class="rating-value" id="speedValue"></div>
+                    </div>
+
+                    <div class="rating-section">
+                        <div class="rating-label">
+                            <span>⭐</span>
+                            <span>ความพึงพอใจโดยรวม</span>
+                        </div>
+                        <p class="rating-description">โดยรวมแล้วคุณพอใจกับการให้บริการของเราหรือไม่</p>
+                        <div class="stars" data-rating="overall">
+                            <span class="star" data-value="1">⭐</span>
+                            <span class="star" data-value="2">⭐</span>
+                            <span class="star" data-value="3">⭐</span>
+                            <span class="star" data-value="4">⭐</span>
+                            <span class="star" data-value="5">⭐</span>
+                        </div>
+                        <div class="rating-value" id="overallValue"></div>
+                    </div>
+
+                    <div class="comment-section">
+                        <label class="comment-label">💬 ความคิดเห็นเพิ่มเติม (ถ้ามี)</label>
+                        <textarea id="comment" placeholder="แบ่งปันประสบการณ์หรือข้อเสนอแนะของคุณ..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn" disabled>ส่งการประเมิน</button>
+                </form>
+            </div>
+
+            <div id="thankYou" class="thank-you">
+                <div class="thank-you-icon">🎉</div>
+                <h2>ขอบคุณสำหรับการประเมิน!</h2>
+                <p>ความคิดเห็นของคุณจะช่วยให้เราพัฒนาบริการได้ดียิ่งขึ้น</p>
+                <a href="01-landing-page.html" class="back-btn">กลับหน้าแรก</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ratings = {
+            clarity: 0,
+            speed: 0,
+            overall: 0
+        };
+
+        const ratingTexts = {
+            0: '',
+            1: 'แย่มาก',
+            2: 'ไม่ดี',
+            3: 'ปานกลาง',
+            4: 'ดี',
+            5: 'ดีมาก'
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const ticketId = urlParams.get('ticket') || 'REQ-2024-00001';
+        document.getElementById('ticketId').textContent = ticketId;
+
+        document.querySelectorAll('.stars').forEach(starsContainer => {
+            const ratingType = starsContainer.getAttribute('data-rating');
+            const stars = starsContainer.querySelectorAll('.star');
+            const valueDisplay = document.getElementById(ratingType + 'Value');
+
+            stars.forEach((star, index) => {
+                star.addEventListener('click', () => {
+                    const value = parseInt(star.getAttribute('data-value'));
+                    ratings[ratingType] = value;
+
+                    stars.forEach((s, i) => {
+                        if (i < value) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+
+                    valueDisplay.textContent = `${value}/5 - ${ratingTexts[value]}`;
+                    checkFormComplete();
+                });
+
+                star.addEventListener('mouseenter', () => {
+                    const value = parseInt(star.getAttribute('data-value'));
+                    stars.forEach((s, i) => {
+                        if (i < value) {
+                            s.style.color = '#FCD34D';
+                        }
+                    });
+                });
+
+                star.addEventListener('mouseleave', () => {
+                    stars.forEach((s, i) => {
+                        if (i < ratings[ratingType]) {
+                            s.style.color = '#F59E0B';
+                        } else {
+                            s.style.color = '#E5E7EB';
+                        }
+                    });
+                });
+            });
+        });
+
+        function checkFormComplete() {
+            const allRated = ratings.clarity > 0 && ratings.speed > 0 && ratings.overall > 0;
+            document.getElementById('submitBtn').disabled = !allRated;
+        }
+
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const feedback = {
+                ticketId: ticketId,
+                clarity: ratings.clarity,
+                speed: ratings.speed,
+                overall: ratings.overall,
+                comment: document.getElementById('comment').value,
+                evaluatedAt: new Date().toISOString()
+            };
+
+            localStorage.setItem('feedback_' + ticketId, JSON.stringify(feedback));
+
+            document.getElementById('evaluationForm').style.display = 'none';
+            document.getElementById('thankYou').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

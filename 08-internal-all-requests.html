@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คำขอทั้งหมด - GCME Internal Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066CC;
+            --accent: #00A3E0;
+            --success: #00B884;
+            --warning: #F59E0B;
+            --danger: #DC2626;
+            --bg-light: #F8FAFC;
+            --text-primary: #1A202C;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+        }
+
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-primary);
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 260px;
+            background: white;
+            border-right: 1px solid var(--border);
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+        }
+
+        .main-content {
+            margin-left: 260px;
+            padding: 2rem;
+        }
+
+        .page-header {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .user-role {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .logout-btn {
+            padding: 0.5rem 1rem;
+            background: white;
+            color: var(--danger);
+            border: 2px solid var(--danger);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        .filters-bar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        select, input[type="search"] {
+            padding: 0.625rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead th {
+            text-align: left;
+            padding: 1rem;
+            background: var(--bg-light);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tbody td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        tbody tr:hover {
+            background: var(--bg-light);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .ticket-id {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .status-badge {
+            padding: 0.375rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .status-new {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .status-assigned {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        .status-in-progress {
+            background: #E0E7FF;
+            color: #3730A3;
+        }
+
+        .status-answered {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+
+        .status-closed {
+            background: #F3F4F6;
+            color: #4B5563;
+        }
+
+        .priority-high {
+            color: var(--danger);
+            font-weight: 700;
+        }
+
+        .priority-medium {
+            color: var(--warning);
+            font-weight: 600;
+        }
+
+        .priority-low {
+            color: var(--text-secondary);
+        }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .action-btn:hover {
+            background: #004C99;
+            transform: translateY(-1px);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .page-btn {
+            padding: 0.5rem 0.875rem;
+            background: white;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover {
+            background: var(--bg-light);
+            border-color: var(--primary);
+        }
+
+        .page-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo-section">
+            <div class="logo-icon">G</div>
+            <div class="logo-text">GCME</div>
+        </div>
+
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="06-internal-dashboard.html" class="nav-link">
+                        <span>📊</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="08-internal-all-requests.html" class="nav-link active">
+                        <span>📋</span>
+                        <span>คำขอทั้งหมด</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="07-internal-my-tasks.html" class="nav-link">
+                        <span>✓</span>
+                        <span>งานของฉัน</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">คำขอทั้งหมด</h1>
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-name" id="userName">ผู้ดูแลระบบ</div>
+                    <div class="user-role">Administrator</div>
+                </div>
+                <button class="logout-btn" onclick="logout()">ออกจากระบบ</button>
+            </div>
+        </div>
+
+        <div class="filters-bar">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label class="filter-label">ค้นหา</label>
+                    <input type="search" placeholder="Ticket ID, ชื่อ, บริษัท...">
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">สถานะ</label>
+                    <select>
+                        <option value="">ทั้งหมด</option>
+                        <option value="new">ใหม่</option>
+                        <option value="assigned">มอบหมายแล้ว</option>
+                        <option value="in-progress">กำลังดำเนินการ</option>
+                        <option value="answered">ตอบแล้ว</option>
+                        <option value="closed">ปิดงาน</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">หมวดหมู่</label>
+                    <select>
+                        <option value="">ทั้งหมด</option>
+                        <option value="electrical">ระบบไฟฟ้า</option>
+                        <option value="machinery">เครื่องจักร</option>
+                        <option value="automation">ระบบอัตโนมัติ</option>
+                        <option value="safety">ความปลอดภัย</option>
+                        <option value="environment">สิ่งแวดล้อม</option>
+                        <option value="management">การจัดการ</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">ความเร่งด่วน</label>
+                    <select>
+                        <option value="">ทั้งหมด</option>
+                        <option value="critical">วิกฤต</option>
+                        <option value="high">สูง</option>
+                        <option value="medium">กลาง</option>
+                        <option value="low">ต่ำ</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ticket ID</th>
+                        <th>หัวข้อ</th>
+                        <th>ลูกค้า</th>
+                        <th>หมวดหมู่</th>
+                        <th>ความเร่งด่วน</th>
+                        <th>สถานะ</th>
+                        <th>SME</th>
+                        <th>วันที่</th>
+                        <th>จัดการ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="ticket-id">REQ-2024-00050</td>
+                        <td>ระบบควบคุมอัตโนมัติขัดข้อง</td>
+                        <td>นายสมชาย ใจดี<br><small style="color: #64748B;">ABC Industries</small></td>
+                        <td>ระบบอัตโนมัติ</td>
+                        <td><span class="priority-high">วิกฤต</span></td>
+                        <td><span class="status-badge status-new">ใหม่</span></td>
+                        <td>-</td>
+                        <td>04/02/2026<br><small style="color: #64748B;">09:15</small></td>
+                        <td><button class="action-btn">มอบหมาย</button></td>
+                    </tr>
+                    <tr>
+                        <td class="ticket-id">REQ-2024-00049</td>
+                        <td>ปรึกษาการติดตั้งเครื่องจักรใหม่</td>
+                        <td>นางสาวสมหญิง รักดี<br><small style="color: #64748B;">XYZ Manufacturing</small></td>
+                        <td>เครื่องจักร</td>
+                        <td><span class="priority-high">สูง</span></td>
+                        <td><span class="status-badge status-assigned">มอบหมายแล้ว</span></td>
+                        <td>ช่างเทคนิค ใจดี</td>
+                        <td>04/02/2026<br><small style="color: #64748B;">08:30</small></td>
+                        <td><button class="action-btn">ดูรายละเอียด</button></td>
+                    </tr>
+                    <tr>
+                        <td class="ticket-id">REQ-2024-00048</td>
+                        <td>ขอคำแนะนำด้านความปลอดภัย</td>
+                        <td>นายประยุทธ มั่นคง<br><small style="color: #64748B;">DEF Factory</small></td>
+                        <td>ความปลอดภัย</td>
+                        <td><span class="priority-medium">กลาง</span></td>
+                        <td><span class="status-badge status-in-progress">กำลังดำเนินการ</span></td>
+                        <td>ผู้เชี่ยวชาญ Safety</td>
+                        <td>03/02/2026<br><small style="color: #64748B;">16:45</small></td>
+                        <td><button class="action-btn">ดูรายละเอียด</button></td>
+                    </tr>
+                    <tr>
+                        <td class="ticket-id">REQ-2024-00047</td>
+                        <td>ระบบไฟฟ้าตัดบ่อย</td>
+                        <td>นายสมศักดิ์ วิชัย<br><small style="color: #64748B;">GHI Industries</small></td>
+                        <td>ระบบไฟฟ้า</td>
+                        <td><span class="priority-high">สูง</span></td>
+                        <td><span class="status-badge status-answered">ตอบแล้ว</span></td>
+                        <td>วิศวกร สมบูรณ์</td>
+                        <td>03/02/2026<br><small style="color: #64748B;">14:20</small></td>
+                        <td><button class="action-btn">ดูคำตอบ</button></td>
+                    </tr>
+                    <tr>
+                        <td class="ticket-id">REQ-2024-00046</td>
+                        <td>ขอข้อมูลการจัดการสิ่งแวดล้อม</td>
+                        <td>นางวิมล สุขใจ<br><small style="color: #64748B;">JKL Company</small></td>
+                        <td>สิ่งแวดล้อม</td>
+                        <td><span class="priority-low">ต่ำ</span></td>
+                        <td><span class="status-badge status-answered">ตอบแล้ว</span></td>
+                        <td>นักวิชาการสิ่งแวดล้อม</td>
+                        <td>03/02/2026<br><small style="color: #64748B;">11:10</small></td>
+                        <td><button class="action-btn">ดูคำตอบ</button></td>
+                    </tr>
+                    <tr>
+                        <td class="ticket-id">REQ-2024-00045</td>
+                        <td>แผนการบำรุงรักษาเครื่องจักร</td>
+                        <td>นายอนุชา กิจดี<br><small style="color: #64748B;">MNO Manufacturing</small></td>
+                        <td>การจัดการ</td>
+                        <td><span class="priority-medium">กลาง</span></td>
+                        <td><span class="status-badge status-closed">ปิดงาน</span></td>
+                        <td>ผู้จัดการฝ่าย</td>
+                        <td>02/02/2026<br><small style="color: #64748B;">10:30</small></td>
+                        <td><button class="action-btn">ดูประวัติ</button></td>
+                    </tr>
+                    <tr>
+                        <td class="ticket-id">REQ-2024-00044</td>
+                        <td>ปัญหาระบบควบคุมอุณหภูมิ</td>
+                        <td>นางสาวชนิดา เจริญ<br><small style="color: #64748B;">PQR Industries</small></td>
+                        <td>ระบบอัตโนมัติ</td>
+                        <td><span class="priority-medium">กลาง</span></td>
+                        <td><span class="status-badge status-closed">ปิดงาน</span></td>
+                        <td>วิศวกรอัตโนมัติ</td>
+                        <td>02/02/2026<br><small style="color: #64748B;">09:00</small></td>
+                        <td><button class="action-btn">ดูประวัติ</button></td>
+                    </tr>
+                    <tr>
+                        <td class="ticket-id">REQ-2024-00043</td>
+                        <td>ขอคำปรึกษาระบบไฟฟ้าโซลาร์</td>
+                        <td>นายธนา มั่งคั่ง<br><small style="color: #64748B;">STU Company</small></td>
+                        <td>ระบบไฟฟ้า</td>
+                        <td><span class="priority-low">ต่ำ</span></td>
+                        <td><span class="status-badge status-closed">ปิดงาน</span></td>
+                        <td>วิศวกรไฟฟ้า</td>
+                        <td>01/02/2026<br><small style="color: #64748B;">15:45</small></td>
+                        <td><button class="action-btn">ดูประวัติ</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <button class="page-btn">‹</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+                <button class="page-btn">›</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const userSession = JSON.parse(localStorage.getItem('internalUser'));
+        
+        if (!userSession) {
+            window.location.href = '05-internal-login.html';
+        } else {
+            document.getElementById('userName').textContent = userSession.name;
+        }
+
+        function logout() {
+            if (confirm('ต้องการออกจากระบบใช่หรือไม่?')) {
+                localStorage.removeItem('internalUser');
+                window.location.href = '05-internal-login.html';
+            }
+        }
+
+        document.querySelectorAll('.action-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('ฟังก์ชันนี้จะพัฒนาในเฟสถัดไป');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>งานของฉัน - GCME Internal Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066CC;
+            --accent: #00A3E0;
+            --success: #00B884;
+            --warning: #F59E0B;
+            --danger: #DC2626;
+            --bg-light: #F8FAFC;
+            --text-primary: #1A202C;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+        }
+
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-primary);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 260px;
+            background: white;
+            border-right: 1px solid var(--border);
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+        }
+
+        .nav-icon {
+            font-size: 1.25rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .page-header {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .user-role {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .logout-btn {
+            padding: 0.5rem 1rem;
+            background: white;
+            color: var(--danger);
+            border: 2px solid var(--danger);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        /* Task Cards */
+        .task-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .task-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s;
+        }
+
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .task-card.urgent {
+            border-left-color: var(--danger);
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .task-id {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+        }
+
+        .priority-badge {
+            padding: 0.375rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .priority-high {
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+
+        .priority-medium {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        .priority-low {
+            background: #F3F4F6;
+            color: #4B5563;
+        }
+
+        .task-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .task-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .task-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .task-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .customer-info {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .customer-info-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .customer-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .customer-detail-item {
+            color: var(--text-secondary);
+        }
+
+        .customer-detail-item strong {
+            color: var(--text-primary);
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-secondary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 12px;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state-text {
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo-section">
+            <div class="logo-icon">G</div>
+            <div class="logo-text">GCME</div>
+        </div>
+
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="06-internal-dashboard.html" class="nav-link">
+                        <span class="nav-icon">📊</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="07-internal-all-requests.html" class="nav-link">
+                        <span class="nav-icon">📋</span>
+                        <span>คำขอทั้งหมด</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="08-internal-my-tasks.html" class="nav-link active">
+                        <span class="nav-icon">✓</span>
+                        <span>งานของฉัน</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">งานของฉัน</h1>
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-name" id="userName">วิศวกร สมบูรณ์</div>
+                    <div class="user-role" id="userRole">SME - Electrical</div>
+                </div>
+                <button class="logout-btn" onclick="logout()">ออกจากระบบ</button>
+            </div>
+        </div>
+
+        <div class="task-grid" id="taskGrid">
+            <!-- Task 1 -->
+            <div class="task-card urgent">
+                <div class="task-header">
+                    <div class="task-id">REQ-2024-00045</div>
+                    <div class="priority-badge priority-high">เร่งด่วน</div>
+                </div>
+                <h3 class="task-title">ปัญหาระบบไฟฟ้าขัดข้อง</h3>
+                <div class="task-meta">
+                    <span>📅 รับวันที่: 03/02/2026</span>
+                    <span>⏰ เหลือเวลา: 2 วัน</span>
+                </div>
+                <p class="task-description">
+                    ระบบไฟฟ้าในโรงงานขัดข้องบ่อยครั้ง มีปัญหาเกี่ยวกับการตัดไฟเป็นระยะ 
+                    ต้องการคำแนะนำในการแก้ไขและป้องกันไม่ให้เกิดซ้ำ
+                </p>
+                <div class="customer-info">
+                    <div class="customer-info-title">ข้อมูลลูกค้า</div>
+                    <div class="customer-details">
+                        <div class="customer-detail-item"><strong>ชื่อ:</strong> สมชาย ใจดี</div>
+                        <div class="customer-detail-item"><strong>บริษัท:</strong> ABC Industries</div>
+                        <div class="customer-detail-item"><strong>อีเมล:</strong> somchai@abc.com</div>
+                        <div class="customer-detail-item"><strong>โทร:</strong> 081-234-5678</div>
+                    </div>
+                </div>
+                <div class="task-actions">
+                    <button class="btn btn-primary" onclick="respondToTask('REQ-2024-00045')">ตอบคำถาม</button>
+                    <button class="btn btn-secondary" onclick="viewDetails('REQ-2024-00045')">ดูรายละเอียด</button>
+                </div>
+            </div>
+
+            <!-- Task 2 -->
+            <div class="task-card">
+                <div class="task-header">
+                    <div class="task-id">REQ-2024-00042</div>
+                    <div class="priority-badge priority-medium">ปานกลาง</div>
+                </div>
+                <h3 class="task-title">ขอคำปรึกษาเรื่องการติดตั้งระบบไฟฟ้าใหม่</h3>
+                <div class="task-meta">
+                    <span>📅 รับวันที่: 02/02/2026</span>
+                    <span>⏰ เหลือเวลา: 3 วัน</span>
+                </div>
+                <p class="task-description">
+                    กำลังจะติดตั้งระบบไฟฟ้าใหม่ในโรงงาน ต้องการคำแนะนำเรื่องการเลือกอุปกรณ์
+                    และวิธีการติดตั้งที่ถูกต้องตามมาตรฐาน
+                </p>
+                <div class="customer-info">
+                    <div class="customer-info-title">ข้อมูลลูกค้า</div>
+                    <div class="customer-details">
+                        <div class="customer-detail-item"><strong>ชื่อ:</strong> สมหญิง รักดี</div>
+                        <div class="customer-detail-item"><strong>บริษัท:</strong> XYZ Manufacturing</div>
+                        <div class="customer-detail-item"><strong>อีเมล:</strong> somying@xyz.com</div>
+                        <div class="customer-detail-item"><strong>โทร:</strong> 082-345-6789</div>
+                    </div>
+                </div>
+                <div class="task-actions">
+                    <button class="btn btn-primary" onclick="respondToTask('REQ-2024-00042')">ตอบคำถาม</button>
+                    <button class="btn btn-secondary" onclick="viewDetails('REQ-2024-00042')">ดูรายละเอียด</button>
+                </div>
+            </div>
+
+            <!-- Task 3 -->
+            <div class="task-card">
+                <div class="task-header">
+                    <div class="task-id">REQ-2024-00038</div>
+                    <div class="priority-badge priority-low">ไม่เร่งด่วน</div>
+                </div>
+                <h3 class="task-title">สอบถามเรื่องการบำรุงรักษาระบบไฟฟ้า</h3>
+                <div class="task-meta">
+                    <span>📅 รับวันที่: 01/02/2026</span>
+                    <span>⏰ เหลือเวลา: 4 วัน</span>
+                </div>
+                <p class="task-description">
+                    ต้องการคำแนะนำเกี่ยวกับการจัดทำแผนการบำรุงรักษาระบบไฟฟ้าเชิงป้องกัน
+                    พร้อมตารางเวลาที่เหมาะสม
+                </p>
+                <div class="customer-info">
+                    <div class="customer-info-title">ข้อมูลลูกค้า</div>
+                    <div class="customer-details">
+                        <div class="customer-detail-item"><strong>ชื่อ:</strong> ประยุทธ มั่นคง</div>
+                        <div class="customer-detail-item"><strong>บริษัท:</strong> DEF Factory</div>
+                        <div class="customer-detail-item"><strong>อีเมล:</strong> prayut@def.com</div>
+                        <div class="customer-detail-item"><strong>โทร:</strong> 083-456-7890</div>
+                    </div>
+                </div>
+                <div class="task-actions">
+                    <button class="btn btn-primary" onclick="respondToTask('REQ-2024-00038')">ตอบคำถาม</button>
+                    <button class="btn btn-secondary" onclick="viewDetails('REQ-2024-00038')">ดูรายละเอียด</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const userSession = JSON.parse(localStorage.getItem('internalUser'));
+        
+        if (!userSession) {
+            window.location.href = '05-internal-login.html';
+        } else {
+            document.getElementById('userName').textContent = userSession.name;
+            document.getElementById('userRole').textContent = `SME - ${userSession.department}`;
+        }
+
+        function logout() {
+            if (confirm('ต้องการออกจากระบบใช่หรือไม่?')) {
+                localStorage.removeItem('internalUser');
+                window.location.href = '05-internal-login.html';
+            }
+        }
+
+        function respondToTask(ticketId) {
+            // Simulate opening response modal
+            const answer = prompt(`ตอบคำถาม ${ticketId}:\n\nกรุณากรอกคำตอบของคุณ`);
+            if (answer) {
+                alert(`บันทึกคำตอบสำเร็จ!\nTicket: ${ticketId}`);
+                // In real app, would save to database
+            }
+        }
+
+        function viewDetails(ticketId) {
+            alert(`เปิดรายละเอียดของ ${ticketId}\n\n(ฟังก์ชันนี้จะพัฒนาในเฟสถัดไป)`);
+        }
+    </script>
+</body>
+</html>

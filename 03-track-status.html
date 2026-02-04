@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ติดตามสถานะ - Holistic Industrial Solution Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066CC;
+            --accent: #00A3E0;
+            --success: #00B884;
+            --bg-light: #F8FAFC;
+            --bg-white: #FFFFFF;
+            --text-primary: #1A202C;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background: var(--bg-light);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        .search-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .search-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .search-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .search-header p {
+            color: var(--text-secondary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        input {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .search-btn {
+            width: 100%;
+            padding: 1.125rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.3);
+        }
+
+        .result-container {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .status-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .ticket-info h2 {
+            font-size: 1.75rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .ticket-date {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .status-badge {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.submitted {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .status-badge.in-progress {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        .status-badge.answered {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+
+        .status-badge.closed {
+            background: #E0E7FF;
+            color: #3730A3;
+        }
+
+        .request-details {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .detail-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.5rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.375rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2.875rem;
+            top: 0.25rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--border);
+        }
+
+        .timeline-item.completed .timeline-dot {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .timeline-item.active .timeline-dot {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .timeline-content {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 3px solid var(--border);
+        }
+
+        .timeline-item.completed .timeline-content {
+            border-left-color: var(--success);
+        }
+
+        .timeline-item.active .timeline-content {
+            border-left-color: var(--primary);
+            background: #EFF6FF;
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .sme-info {
+            background: #EFF6FF;
+            border: 2px solid #BFDBFE;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .sme-info h4 {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .sme-info p {
+            color: #1E3A8A;
+        }
+
+        .answer-box {
+            background: #F0FDF4;
+            border: 2px solid #BBF7D0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .answer-box h4 {
+            color: var(--success);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .answer-content {
+            color: #166534;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+
+        .error-message {
+            background: #FEE2E2;
+            border: 2px solid #FCA5A5;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            color: #991B1B;
+        }
+
+        .error-message h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .status-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">G</div>
+                <div class="logo-text">GCME</div>
+            </div>
+            <h1>ติดตามสถานะคำขอ</h1>
+            <p class="subtitle">ตรวจสอบความคืบหน้าของคำขอของคุณ</p>
+        </div>
+
+        <div class="search-box">
+            <div class="search-header">
+                <h2>🔍 ค้นหาคำขอของคุณ</h2>
+                <p>กรุณากรอก Ticket ID และอีเมลที่ใช้ส่งคำขอ</p>
+            </div>
+            <form id="searchForm">
+                <div class="form-group">
+                    <label>Ticket ID</label>
+                    <input type="text" id="ticketId" placeholder="REQ-2024-00001" required>
+                </div>
+                <div class="form-group">
+                    <label>อีเมล</label>
+                    <input type="email" id="email" placeholder="your@email.com" required>
+                </div>
+                <button type="submit" class="search-btn">ค้นหา</button>
+            </form>
+        </div>
+
+        <div id="resultContainer" class="result-container"></div>
+
+        <div id="errorContainer" style="display: none;">
+            <div class="error-message">
+                <h3>❌ ไม่พบข้อมูล</h3>
+                <p>กรุณาตรวจสอบ Ticket ID และอีเมลอีกครั้ง</p>
+                <a href="#" onclick="resetSearch()" class="back-btn">ลองอีกครั้ง</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sampleTickets = {
+            'REQ-2024-00001': {
+                ticketId: 'REQ-2024-00001',
+                email: 'customer@email.com',
+                fullname: 'สมชาย ใจดี',
+                phone: '081-234-5678',
+                company: 'บริษัท ตัวอย่าง จำกัด',
+                category: 'electrical',
+                categoryName: 'ระบบไฟฟ้า',
+                priority: 'high',
+                priorityName: 'สูง - เร่งด่วน',
+                subject: 'ปัญหาระบบไฟฟ้าขัดข้อง',
+                status: 'answered',
+                submittedAt: '2024-02-01T10:30:00',
+                assignedAt: '2024-02-01T11:00:00',
+                firstResponseAt: '2024-02-02T14:30:00',
+                answeredAt: '2024-02-03T09:00:00',
+                sme: {
+                    name: 'วิศวกร สมบูรณ์',
+                    position: 'Senior Electrical Engineer',
+                    department: 'ฝ่ายวิศวกรรมไฟฟ้า'
+                },
+                answer: 'หลังจากตรวจสอบข้อมูลแล้ว พบว่าปัญหาน่าจะเกิดจากการใช้งานโหลดเกินกำลังผลิตของหม้อแปลง\n\nแนะนำให้:\n1. ตรวจสอบและอัพเกรดหม้อแปลงให้รองรับโหลดที่เพิ่มขึ้น\n2. ติดตั้งระบบตรวจวัดโหลดแบบเรียลไทม์\n3. จัดทำแผนการบำรุงรักษาเชิงป้องกัน'
+            }
+        };
+
+        window.addEventListener('load', function() {
+            const lastTicket = JSON.parse(localStorage.getItem('lastTicket'));
+            if (lastTicket) {
+                document.getElementById('ticketId').value = lastTicket.ticketId;
+                document.getElementById('email').value = lastTicket.email;
+            }
+        });
+
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const ticketId = document.getElementById('ticketId').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            const ticket = sampleTickets[ticketId];
+            
+            if (ticket && ticket.email === email) {
+                displayResult(ticket);
+            } else {
+                const lastTicket = JSON.parse(localStorage.getItem('lastTicket'));
+                if (lastTicket && lastTicket.ticketId === ticketId && lastTicket.email === email) {
+                    displayResult(lastTicket);
+                } else {
+                    showError();
+                }
+            }
+        });
+
+        function displayResult(ticket) {
+            document.getElementById('errorContainer').style.display = 'none';
+            const container = document.getElementById('resultContainer');
+            container.style.display = 'block';
+
+            const statusTextMap = {
+                'submitted': 'รับเรื่องแล้ว',
+                'in-progress': 'กำลังดำเนินการ',
+                'answered': 'ได้รับคำตอบแล้ว',
+                'closed': 'เสร็จสิ้น'
+            };
+
+            container.innerHTML = `
+                <div class="status-card">
+                    <div class="status-header">
+                        <div class="ticket-info">
+                            <h2>${ticket.ticketId}</h2>
+                            <div class="ticket-date">ส่งคำขอเมื่อ: ${new Date(ticket.submittedAt).toLocaleString('th-TH')}</div>
+                        </div>
+                        <div class="status-badge ${ticket.status || 'submitted'}">
+                            ${statusTextMap[ticket.status || 'submitted']}
+                        </div>
+                    </div>
+
+                    <div class="request-details">
+                        <div class="detail-row">
+                            <span class="detail-label">ชื่อ-นามสกุล</span>
+                            <span class="detail-value">${ticket.fullname}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">บริษัท/หน่วยงาน</span>
+                            <span class="detail-value">${ticket.company}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">หมวดหมู่</span>
+                            <span class="detail-value">${ticket.categoryName || ticket.category}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">หัวข้อ</span>
+                            <span class="detail-value">${ticket.subject}</span>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-bottom: 1.5rem; color: var(--text-primary);">📋 ความคืบหน้า</h3>
+                    <div class="timeline">
+                        <div class="timeline-item completed">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">✅ รับเรื่องแล้ว</div>
+                                <div class="timeline-description">ระบบได้รับคำขอของคุณเรียบร้อยแล้ว</div>
+                                <div class="timeline-date">${new Date(ticket.submittedAt).toLocaleString('th-TH')}</div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item ${ticket.assignedAt ? 'completed' : 'pending'}">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">🔄 ส่งต่อผู้เชี่ยวชาญ</div>
+                                <div class="timeline-description">ส่งต่อไปยัง SME ที่เหมาะสมแล้ว</div>
+                                ${ticket.assignedAt ? `<div class="timeline-date">${new Date(ticket.assignedAt).toLocaleString('th-TH')}</div>` : ''}
+                                ${ticket.sme ? `
+                                    <div class="sme-info">
+                                        <h4>👨‍🔧 ผู้เชี่ยวชาญที่รับผิดชอบ</h4>
+                                        <p><strong>${ticket.sme.name}</strong></p>
+                                        <p>${ticket.sme.position}</p>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+
+                        <div class="timeline-item ${ticket.answeredAt ? 'active' : 'pending'}">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">✅ ได้รับคำตอบ</div>
+                                <div class="timeline-description">ผู้เชี่ยวชาญให้คำตอบและคำแนะนำแล้ว</div>
+                                ${ticket.answer ? `
+                                    <div class="answer-box">
+                                        <h4>📝 คำตอบจาก SME</h4>
+                                        <div class="answer-content">${ticket.answer}</div>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+
+                        <div class="timeline-item pending">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">📞 ติดต่อกลับ</div>
+                                <div class="timeline-description">ทีมงานจะติดต่อกลับเพื่อชี้แจง</div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item pending">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">🎯 เสร็จสิ้น</div>
+                                <div class="timeline-description">ปิดงานและขอประเมิน</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="01-landing-page.html" class="back-btn">← กลับหน้าแรก</a>
+            `;
+        }
+
+        function showError() {
+            document.getElementById('resultContainer').style.display = 'none';
+            document.getElementById('errorContainer').style.display = 'block';
+        }
+
+        function resetSearch() {
+            document.getElementById('errorContainer').style.display = 'none';
+            document.getElementById('searchForm').reset();
+        }
+    </script>
+</body>
+</html>

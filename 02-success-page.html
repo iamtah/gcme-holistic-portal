@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ส่งคำขอสำเร็จ - Holistic Industrial Solution Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066CC;
+            --accent: #00A3E0;
+            --success: #00B884;
+            --bg-light: #F8FAFC;
+            --bg-white: #FFFFFF;
+            --text-primary: #1A202C;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background: var(--bg-light);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .success-container {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--success), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            animation: bounce 0.8s ease-out 0.3s;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .success-icon svg {
+            width: 60px;
+            height: 60px;
+            stroke: white;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .checkmark {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: draw 0.8s ease-out 0.5s forwards;
+        }
+
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        .ticket-box {
+            background: #EFF6FF;
+            border: 2px solid #BFDBFE;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .ticket-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .ticket-id {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #004C99;
+            transform: translateY(-2px);
+        }
+
+        .copy-btn.copied {
+            background: var(--success);
+        }
+
+        .email-sent {
+            background: #F0FDF4;
+            border: 2px solid #BBF7D0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .email-sent p {
+            color: #166534;
+            font-weight: 500;
+        }
+
+        .email-address {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .info-box {
+            background: #FFF7ED;
+            border: 2px solid #FED7AA;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .info-box h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #9A3412;
+            margin-bottom: 1rem;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            color: #7C2D12;
+            line-height: 1.6;
+        }
+
+        .info-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .details-section {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .details-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .detail-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .btn {
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .ticket-id {
+                font-size: 1.75rem;
+            }
+
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">
+            <svg viewBox="0 0 52 52">
+                <circle cx="26" cy="26" r="24" fill="none"/>
+                <path class="checkmark" d="M14 27l8 8 16-16"/>
+            </svg>
+        </div>
+
+        <h1>ส่งคำขอสำเร็จ!</h1>
+        <p class="subtitle">เราได้รับคำขอของคุณเรียบร้อยแล้ว</p>
+
+        <div class="ticket-box">
+            <div class="ticket-label">Ticket ID ของคุณ</div>
+            <div class="ticket-id" id="ticketId">REQ-2024-00001</div>
+            <button class="copy-btn" onclick="copyTicketId()">
+                <span id="copyText">📋 คัดลอก Ticket ID</span>
+            </button>
+        </div>
+
+        <div class="email-sent">
+            <p>📧 เราได้ส่งอีเมลยืนยันไปที่<br><span class="email-address" id="customerEmail">customer@email.com</span></p>
+        </div>
+
+        <div class="info-box">
+            <h3>📌 สิ่งที่ควรทราบ</h3>
+            <ul class="info-list">
+                <li><strong>กรุณาเก็บ Ticket ID ไว้</strong> เพื่อใช้ในการติดตามสถานะ</li>
+                <li>ระบบจะส่งต่อไปยัง<strong>ผู้เชี่ยวชาญ</strong>ที่เหมาะสมโดยอัตโนมัติ</li>
+                <li>เราจะตอบกลับภายใน <strong>3 วันทำการ</strong></li>
+                <li>คุณจะได้รับอีเมลแจ้งเตือนทุกขั้นตอน</li>
+            </ul>
+        </div>
+
+        <div class="details-section" id="requestDetails">
+            <h3>รายละเอียดคำขอ</h3>
+        </div>
+
+        <div class="action-buttons">
+            <a href="03-track-status.html" class="btn btn-primary">ติดตามสถานะ</a>
+            <a href="01-landing-page.html" class="btn btn-secondary">ส่งคำขอใหม่</a>
+        </div>
+    </div>
+
+    <script>
+        const ticketData = JSON.parse(localStorage.getItem('lastTicket'));
+
+        if (ticketData) {
+            document.getElementById('ticketId').textContent = ticketData.ticketId;
+            document.getElementById('customerEmail').textContent = ticketData.email;
+
+            const detailsSection = document.getElementById('requestDetails');
+            const categoryNames = {
+                'electrical': 'ระบบไฟฟ้า',
+                'machinery': 'เครื่องจักร',
+                'automation': 'ระบบอัตโนมัติ',
+                'safety': 'ความปลอดภัย',
+                'environment': 'สิ่งแวดล้อม',
+                'management': 'การจัดการ',
+                'other': 'อื่นๆ'
+            };
+
+            const priorityNames = {
+                'low': 'ต่ำ - ไม่เร่งด่วน',
+                'medium': 'กลาง - ปกติ',
+                'high': 'สูง - เร่งด่วน',
+                'critical': 'วิกฤต - ฉุกเฉิน'
+            };
+
+            detailsSection.innerHTML += `
+                <div class="detail-item">
+                    <span class="detail-label">ชื่อ-นามสกุล</span>
+                    <span class="detail-value">${ticketData.fullname}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">บริษัท/หน่วยงาน</span>
+                    <span class="detail-value">${ticketData.company}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">หมวดหมู่</span>
+                    <span class="detail-value">${categoryNames[ticketData.category] || ticketData.category}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">ระดับความเร่งด่วน</span>
+                    <span class="detail-value">${priorityNames[ticketData.priority] || ticketData.priority}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">หัวข้อ</span>
+                    <span class="detail-value">${ticketData.subject}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">วันที่ส่ง</span>
+                    <span class="detail-value">${new Date(ticketData.submittedAt).toLocaleString('th-TH')}</span>
+                </div>
+            `;
+        }
+
+        function copyTicketId() {
+            const ticketId = document.getElementById('ticketId').textContent;
+            navigator.clipboard.writeText(ticketId).then(() => {
+                const copyBtn = document.querySelector('.copy-btn');
+                const copyText = document.getElementById('copyText');
+                copyText.textContent = '✓ คัดลอกแล้ว!';
+                copyBtn.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyText.textContent = '📋 คัดลอก Ticket ID';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
